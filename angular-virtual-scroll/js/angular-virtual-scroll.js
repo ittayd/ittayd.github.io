@@ -147,6 +147,7 @@ mod.directive("sfScroller", function(){
       transclude: 'element',
       priority: 1000,
       terminal: true,
+	  multiElement: true,
       compile: sfVirtualRepeatCompile
     };
 

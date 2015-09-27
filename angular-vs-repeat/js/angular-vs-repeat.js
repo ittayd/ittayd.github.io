@@ -157,7 +157,8 @@
                         'vsExcess': 'excess'
                     };
 
-                $element.empty();
+                //$element.empty();
+				$element[0].removeChild($element[0].childNodes[0])
                 if (!window.getComputedStyle || window.getComputedStyle($element[0]).position !== 'absolute') {
                     $element.css('position', 'relative');
                 }
