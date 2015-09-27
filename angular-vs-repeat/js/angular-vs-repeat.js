@@ -272,7 +272,7 @@
                                         var children = $element.children(),
                                             i = 0;
                                         while (i < children.length) {
-                                            if (children[i].attributes['ng-repeat'] != null || children[i].attributes['data-ng-repeat'] != null) {
+                                            if (children[i].attributes['ng-repeat'] != null || children[i].attributes['data-ng-repeat'] != null || children[i].attributes['ng-repeat-start']) {
                                                 if (children[i][offsetSize]) {
                                                     $scope.elementSize = children[i][offsetSize];
                                                     reinitialize();
@@ -297,8 +297,11 @@
                                 });
                             }
                         }
-
-                        childClone.attr('ng-repeat', lhs + ' in ' + collectionName + (rhsSuffix ? ' ' + rhsSuffix : ''))
+                        var ngRepeat = 'ng-repeat'
+						if (childClone.attr('ng-repeat-start')) { 
+						  ngRepeat = 'ng-repeat-start'
+						}
+                        childClone.attr(ngRepeat, lhs + ' in ' + collectionName + (rhsSuffix ? ' ' + rhsSuffix : ''))
                                 .addClass('vs-repeat-repeated-element');
 
                         var offsetCalculationString = sizesPropertyExists ?
