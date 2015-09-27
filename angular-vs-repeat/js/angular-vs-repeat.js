@@ -107,7 +107,15 @@
             return sizeProp === 'clientWidth' ? window.innerWidth : window.innerHeight;
         }
         else {
-            return element[sizeProp];
+	      /*var $el = $('#foo'),
+          scrollTop = $(this).scrollTop(),
+          scrollBot = scrollTop + $(this).height(),
+          elTop = $el.offset().top,
+          elBottom = elTop + $el.outerHeight(),
+          visibleTop = elTop < scrollTop ? scrollTop : elTop,
+          visibleBottom = elBottom > scrollBot ? scrollBot : elBottom;
+          $('#notification').text(visibleBottom - visibleTop);*/
+          return element[sizeProp];
         }
     }
 
@@ -135,7 +143,7 @@
             }],
             compile: function($element) {
                 var ngRepeatChild = $element.children().eq(0),
-                    ngRepeatExpression = ngRepeatChild.attr('ng-repeat') || ngRepeatChild.attr('data-ng-repeat'),
+                    ngRepeatExpression = ngRepeatChild.attr('ng-repeat') || ngRepeatChild.attr('data-ng-repeat') || ngRepeatChild.attr('ng-repeat-start'),
                     childCloneHtml = ngRepeatChild[0].outerHTML,
                     expressionMatches = /^\s*(\S+)\s+in\s+([\S\s]+?)(track\s+by\s+\S+)?$/.exec(ngRepeatExpression),
                     lhs = expressionMatches[1],
